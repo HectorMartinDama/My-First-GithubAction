@@ -10,7 +10,7 @@ jobs:
         runs-on: ubuntu-latest # where s.o
 
         steps: 
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v2
 
             - name: Hello Friends
               run: echo "Hello!!!! from ${{ github.workflow }} triggered by the ${{ github.event_name }} done by ${{ github.actor }}"
