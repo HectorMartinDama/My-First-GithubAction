@@ -4,13 +4,25 @@ name: First workflow
 # ¿When starting? -> Triggers
 on: [push]
 
+
+
+
 jobs: 
 
     build: # name of the event
-        runs-on: ubuntu-latest # where s.o
+        runs-on: ${{ matrix.os }}
+        strategy:
+          matrix:
+            os: [ubuntu-latest, windows-latest, macOs-latest]
 
+
+        name: ${{ matrix.os }} # diferenciamos entre los os
         steps: 
             - uses: actions/checkout@v3
+
+            - name: Hi from windows
+              if: matrix.os == 'windows-latest'
+              run: echo "Hi from windos"
 
             - name: Hello Friends
               run: echo "Hello!!!! from ${{ github.workflow }} triggered by the ${{ github.event_name }} done by ${{ github.actor }}"
